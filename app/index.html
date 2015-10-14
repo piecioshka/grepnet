@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>noti-gear</title>
+    <link rel="stylesheet" href="styles/vendor/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+    <script src="dist/main.js"></script>
+</head>
+<body>
+
+<div id="app" ng-controller="ApplicationController">
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand">
+            <img class="pull-left logo" src="images/gear-small.png" alt=""/> Noti Gear
+        </a>
+
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="btn btn-success" ui-sref="add-task">Add</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="btn btn-secondary" ui-sref="list-of-tasks">List
+                    <span class="label label-pill label-primary" ng-cloak>{{ tasks.length }}</span></a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="main" class="container" ui-view></div>
+</div>
+
+</body>
+</html>

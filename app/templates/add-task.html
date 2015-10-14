@@ -1,0 +1,32 @@
+<div class="add-task-form">
+    <form ng-submit="add(title, url, phrase, interval)">
+        <fieldset class="form-group col-sm-12">
+            <label for="form-task-title">Task title</label>
+            <input type="text" class="form-control" id="form-task-title" placeholder="Is recent item exist?" ng-model="title" ng-required="true">
+        </fieldset>
+
+        <fieldset class="form-group col-sm-12">
+            <label for="form-task-url">Task URL</label>
+            <input type="url" class="form-control" id="form-task-url" placeholder="http://google.com/search?q=test" ng-model="url" ng-required="true">
+        </fieldset>
+
+        <fieldset class="form-group col-sm-8">
+            <label for="form-task-phrase">Task phrase</label>
+            <input type="text" class="form-control" id="form-task-phrase" placeholder="/test item 123/gi" ng-model="phrase" ng-required="true">
+        </fieldset>
+
+        <fieldset class="form-group col-sm-4">
+            <label for="form-task-interval">Task interval</label>
+
+            <div class="input-group">
+                <input type="number" class="form-control" id="form-task-interval" value="5" ng-model="interval" ng-required="true">
+
+                <div class="input-group-addon">minutes</div>
+            </div>
+        </fieldset>
+
+        <fieldset class="col-sm-4">
+            <button class="btn btn-primary add-task">Add task</button>
+        </fieldset>
+    </form>
+</div>

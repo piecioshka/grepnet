@@ -1,14 +1,14 @@
-# ![](images/gear-small.svg) noti-gear
+# ![](./app/images/gear-small.png) noti-gear
 
 > Display notification popup when web page is update and plugin match passed phrase.
 
 ## Install
 
-Download plugin from Google Play Store.
+Enter on page or download a plugin from Google Play Store to Google Chrome browser.
 
 **WARNING**
 
-Plugin working only when browser is opened and plugin is enabled.
+Plugin works only when browser is opened and plugin is enabled.
 
 ## Usage
 
@@ -19,6 +19,10 @@ Add task is simple.
 3. Put phrase to search.
 
 When `noti-gear` match phrase you will get notification on your desktop.
+
+## Technical specification
+
+ - Use Bootstrap 4: http://v4-alpha.getbootstrap.com/components/buttons/
 
 ## License
 

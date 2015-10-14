@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-sm-4" ng-repeat="task in tasks">
+        <div class="card text-center">
+            <div class="card-header">
+                <span class="label label-primary">{{ ::task.interval }}</span>
+            </div>
+            <div class="card-block">
+                <h4>{{ ::task.title }}</h4>
+
+                <p class="card-text">{{ ::task.url }}</p>
+                <code>{{ ::task.phrase }}</code>
+
+                <hr/>
+
+                <a class="btn btn-warning">Pause</a>
+                <a class="btn btn-danger" ng-click="remove($index)">Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
