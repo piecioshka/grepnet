@@ -1,5 +1,5 @@
-require('./vendor/angular');
-require('./vendor/angular-ui-router');
+require('../bower_components/angular/angular');
+require('../bower_components/angular-ui-router/release/angular-ui-router');
 
 require('./modules/noti');
 require('./modules/routes');
