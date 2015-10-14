@@ -1,1 +1,6 @@
-{"private": true}
+{
+    "private": true,
+    "name": "noti-gear",
+    "version": "0.0.1",
+    "description": "Display notification popup when web page is update and plugin match passed phrase."
+}
