@@ -10,4 +10,4 @@ bower:
 	bower install
 
 webpack:
-	webpack -p
+	webpack

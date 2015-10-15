@@ -5,7 +5,8 @@ require('./vendor/proposal-string-pad-left-right/polyfill');
 
 angular.module('grep', ['ui.router']);
 
-require('./modules/routes');
+require('./routes');
+
 require('./controllers/ApplicationController');
 require('./services/Checker');
 require('./filters/Seconder');

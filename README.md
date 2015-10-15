@@ -22,7 +22,7 @@ When checker match phrase you will get notification on your desktop.
 
 ## Technical specification
 
- - Use Bootstrap 4: http://v4-alpha.getbootstrap.com/components/buttons/
+ - Use Bootstrap 4: http://v4-alpha.getbootstrap.com/
 
 ## License
 
