@@ -1,4 +1,4 @@
-angular.module('noti').config(($stateProvider, $urlRouterProvider) => {
+angular.module('grep').config(($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('list-of-tasks', {
         url: '/list',
         templateUrl: 'templates/list-of-tasks.html'

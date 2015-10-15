@@ -8,6 +8,9 @@ module.exports = {
         path: './app/dist'
     },
     module: {
+        noParse: [
+            /scripts\/vendor/
+        ],
         preLoaders: [
             {
                 test: /\.es6\.js/,

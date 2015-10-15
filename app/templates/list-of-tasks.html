@@ -2,7 +2,7 @@
     <div class="col-sm-4" ng-repeat="task in tasks">
         <div class="card text-center">
             <div class="card-header">
-                <span class="label label-primary">{{ ::task.interval }}</span>
+                <span class="label label-primary">{{ ::task.delay | seconder }}</span>
             </div>
             <div class="card-block">
                 <h4>{{ ::task.title }}</h4>

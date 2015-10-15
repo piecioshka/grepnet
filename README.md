@@ -1,4 +1,4 @@
-# ![](./app/images/gear-small.png) noti-gear
+# ![](./app/images/gear-32x32.png) www.grepnet.io
 
 > Display notification popup when web page is update and plugin match passed phrase.
 
@@ -18,7 +18,7 @@ Add task is simple.
 2. Put interval time.
 3. Put phrase to search.
 
-When `noti-gear` match phrase you will get notification on your desktop.
+When checker match phrase you will get notification on your desktop.
 
 ## Technical specification
 
