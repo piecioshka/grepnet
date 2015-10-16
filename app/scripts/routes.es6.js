@@ -1,4 +1,4 @@
-angular.module('grep').config(($stateProvider, $urlRouterProvider) => {
+angular.module('grepnet').config(($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('list-of-tasks', {
         url: '/list',
         templateUrl: 'templates/list-of-tasks.html'
