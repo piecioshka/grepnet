@@ -35,7 +35,7 @@ class ApplicationController {
     }
 
     _resetState() {
-        this.$scope.tasks.forEach(function (task) {
+        this.$scope.tasks.forEach((task) => {
             if (task.state === 'started') {
                 task.state = 'new';
             }
