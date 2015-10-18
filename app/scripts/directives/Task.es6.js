@@ -63,8 +63,9 @@ class Controller {
             return $scope.task.status === status;
         };
 
-        if ($scope.is('started')) {
+        if ($scope.is('new')) {
             startGrepping();
+            $scope.task.status = 'started';
         }
     }
 }

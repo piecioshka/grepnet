@@ -3,12 +3,12 @@ export default () => {
 
     return {
         add: (task) => {
-            task.status = 'started';
+            task.status = 'new';
             tasks.unshift(task);
         },
 
         edit: (index, task) => {
-            task.status = 'started';
+            task.status = 'new';
             tasks[index] = task;
         },
 

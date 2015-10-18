@@ -6,7 +6,9 @@
         <div class="card-block">
             <h4>{{ ::task.title }}</h4>
 
-            <p class="card-text">{{ ::task.url }}</p>
+            <p class="card-text">
+                <a ng-href="{{ ::task.url }}">{{ ::task.url }}</a>
+            </p>
             <code>{{ ::task.phrase }}</code>
 
             <hr/>
