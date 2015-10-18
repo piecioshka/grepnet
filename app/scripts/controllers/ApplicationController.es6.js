@@ -7,13 +7,15 @@ const MILLISECONDS_IN_SECOND = 1000;
  * @returns {Promise}
  */
 function grep($http, url, phrase) {
-    console.log('grep', url, phrase);
+    console.log('grep:', url, phrase);
 
     return $http.post('http://localhost:3000', {
         url: url,
         phrase: phrase
     }).then(response => {
-        return Boolean(response.data.status);
+        return {
+            status: Boolean(response.data.status)
+        };
     });
 }
 
@@ -24,11 +26,11 @@ function grep($http, url, phrase) {
  * @returns {*}
  */
 function spawn(title, url, interval) {
-    console.log('spawn', title, url);
+    console.info('spawn:', title, url);
+    clearInterval(interval);
+    return;
 
     if (window.Notification && Notification.permission === 'granted') {
-        clearInterval(interval);
-
         return new Notification(`'${title}' completed!`, {
             body: `We found your phrase. Please visit your URL: ${url}.`,
             icon: './images/gear-64x64.png'
@@ -41,14 +43,26 @@ angular.module('grepnet').controller('ApplicationController', ($scope, $state, $
 
     $scope.add = ({ title, url, phrase, delay }) => {
         let interval = null;
+        let status = 'new';
 
         interval = setInterval(() => {
-            grep($http, url, phrase).then(() => {
-                spawn(title, url, interval);
+            grep($http, url, phrase).then(response => {
+                console.log('... status:', response.status);
+                if (response.status) {
+                    status = 'completed';
+                    spawn(title, url, interval);
+                }
             });
         }, delay * MILLISECONDS_IN_SECOND);
 
-        tasks.unshift({ title, url, phrase, delay, interval });
+        tasks.unshift({
+            title,
+            url,
+            phrase,
+            delay,
+            interval,
+            status
+        });
         $state.go('list-of-tasks');
     };
 
@@ -66,7 +80,13 @@ angular.module('grepnet').controller('ApplicationController', ($scope, $state, $
         console.warn('Task "%s" removed!', task[0].title);
     };
 
+    $scope.isCompleted = ($index) => {
+        return tasks[$index].status === 'completed';
+    };
+
     $scope.tasks = tasks;
+
+    // TODO(piecioshka): Below is for development. Remove before publish.
 
     $scope.add({
         title: 'Is recent item exist?',

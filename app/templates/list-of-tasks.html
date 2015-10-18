@@ -12,7 +12,10 @@
 
                 <hr/>
 
-                <a class="btn btn-warning" ng-click="pause($index)">Pause</a>
+                <a class="btn btn-warning"
+                    ng-click="pause($index)"
+                    ng-hide="isCompleted($index)"
+                >Pause</a>
                 <a class="btn btn-danger" ng-click="remove($index)">Remove</a>
             </div>
         </div>
