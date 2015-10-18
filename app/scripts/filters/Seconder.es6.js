@@ -1,8 +1,13 @@
 export default () => {
     return (number) => {
-        let minutes = String(Math.floor(number / 60)).padLeft(2, '0');
-        let seconds = String(number % 60).padLeft(2, '0');
+        var hours = Math.floor(number / 3600);
+        var minutes = Math.floor((number - (hours * 3600)) / 60);
+        var seconds = number - (hours * 3600) - (minutes * 60);
 
-        return `${minutes}:${seconds}`;
+        hours = String(hours).padLeft(2, '0');
+        minutes = String(minutes).padLeft(2, '0');
+        seconds = String(seconds).padLeft(2, '0');
+
+        return `${hours}:${minutes}:${seconds}`;
     };
 };
