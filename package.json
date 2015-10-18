@@ -1,11 +1,11 @@
 {
     "private": true,
     "name": "grepnet-client-www",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Display notification popup when web page is update and plugin match passed phrase.",
     "scripts": {
         "clear": "rm -rf node_modules/ app/bower_components/ app/dist/",
-        "lint": "eslint ./app/scripts/* --ignore-pattern ./app/scripts/vendor/; exit 0"
+        "lint": "eslint ./app/scripts/* --ignore-pattern ./app/scripts/vendor/ ; exit 0"
     },
     "eslintConfig": {
         "extends": "piecioshka",

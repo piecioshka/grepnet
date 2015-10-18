@@ -1,43 +1,25 @@
-let save = (item) => {
-    try {
-        localStorage.setItem('grepnet-tasks', JSON.stringify(item));
-    } catch (ignore) {
-    }
-};
-
-let load = () => {
-    var tasks = null;
-
-    try {
-        tasks = JSON.parse(localStorage.getItem('grepnet-tasks'));
-    } catch (ignore) {
-    }
-
-    return tasks || [];
-};
-
-export default () => {
-    let tasks = load();
+export default (storage) => {
+    let tasks = storage.load('grepnet-tasks') || [];
 
     return {
         add: (task) => {
             task.status = 'new';
             tasks.unshift(task);
 
-            save(tasks);
+            storage.save('grepnet-tasks', tasks);
         },
 
         edit: (index, task) => {
             task.status = 'new';
             tasks[index] = task;
 
-            save(tasks);
+            storage.save('grepnet-tasks', tasks);
         },
 
-        remove(index) {
+        remove: (index) => {
             tasks.splice(index, 1);
 
-            save(tasks);
+            storage.save('grepnet-tasks', tasks);
         },
 
         getAll: () => {

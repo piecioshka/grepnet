@@ -43,22 +43,24 @@ mod.config(($stateProvider, $urlRouterProvider) => {
 });
 
 import ApplicationController from './controllers/ApplicationController';
-import TaskDirective from './directives/Task';
+import TaskDirective from './directives/TaskCard';
 import SeconderFilter from './filters/Seconder';
 import GrepFactory from './services/GrepFactory';
 import SpawnFactory from './services/SpawnFactory';
+import GrepStorage from './services/GrepStorage';
 import TasksFactory from './services/TasksFactory';
 
 mod.controller('ApplicationController', ApplicationController);
-mod.directive('task', TaskDirective);
+mod.directive('taskCard', TaskDirective);
 mod.filter('seconder', SeconderFilter);
 mod.service('grep', GrepFactory);
 mod.service('spawn', SpawnFactory);
+mod.service('storage', GrepStorage);
 mod.service('tasks', TasksFactory);
 
 window.addEventListener('load', () => {
     if (window.Notification && Notification.permission !== 'granted') {
-        Notification.requestPermission(status => {
+        Notification.requestPermission((status) => {
             if (Notification.permission !== status) {
                 Notification.permission = status;
             }

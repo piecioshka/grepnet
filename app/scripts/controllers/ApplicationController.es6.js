@@ -22,13 +22,6 @@ class ApplicationController {
 
         // TODO(piecioshka): Below is for development. Remove before publish.
 
-        let google = {
-            title: 'Is recent item exist?',
-            url: 'https://www.google.com/search?q=test',
-            phrase: 'test',
-            delay: 10
-        };
-
         let piecioshka = {
             title: 'Is HbbTV post is published?',
             url: 'http://piecioshka.pl/',
@@ -36,7 +29,6 @@ class ApplicationController {
             delay: 10
         };
 
-        // $scope.add(google);
         $scope.add(piecioshka);
     }
 }

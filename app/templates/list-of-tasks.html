@@ -1,7 +1,9 @@
 <div class="row">
-    <task ng-repeat="task in tasks"></task>
+    <task-card ng-repeat="task in tasks"></task-card>
 
     <div class="col-sm-12">
-        <p ng-if="tasks.length === 0">Task list is empty. Please <a ui-sref="add-task">add</a> task!</p>
+        <p class="alert alert-warning"
+                ng-if="tasks.length === 0"
+                >Task list is empty. Please <a class="btn btn-success-outline" ui-sref="add-task">add</a> task!</p>
     </div>
 </div>
