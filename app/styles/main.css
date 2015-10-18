@@ -13,3 +13,7 @@
 .card-header > h4 {
     margin-bottom: 0;
 }
+
+.card-block {
+    overflow: hidden;
+}

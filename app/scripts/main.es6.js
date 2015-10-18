@@ -14,15 +14,15 @@ mod.config(($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('add-task', {
         url: '/add',
         templateUrl: 'templates/update-task.html',
-        controller: ($scope) => {
-            $scope.mode = 'add';
+        controller: ($rootScope) => {
+            $rootScope.mode = 'add';
         }
     });
 
     $stateProvider.state('edit-task', {
         url: '/edit/:index',
         templateUrl: 'templates/update-task.html',
-        controller: ($scope, $state, $stateParams, tasks) => {
+        controller: ($rootScope, $scope, $state, $stateParams, tasks) => {
             let task = tasks.at($stateParams.index);
 
             if (!task) {
@@ -35,7 +35,7 @@ mod.config(($stateProvider, $urlRouterProvider) => {
             $scope.phrase = task.phrase;
             $scope.delay = task.delay;
 
-            $scope.mode = 'edit';
+            $rootScope.mode = 'edit';
         }
     });
 

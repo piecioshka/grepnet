@@ -3,7 +3,7 @@ class ApplicationController {
     $state = null;
     tasks = null;
 
-    constructor($scope, $state, $stateParams, tasks) {
+    constructor($scope, $rootScope, $state, $stateParams, tasks) {
         this.$scope = $scope;
         this.$state = $state;
         this.tasks = tasks;
@@ -22,16 +22,19 @@ class ApplicationController {
             this.$state.go('list-of-tasks');
         };
 
-        // TODO(piecioshka): Below is for development. Remove before publish.
+        $scope.submit = (task) => {
+            switch ($rootScope.mode) {
+                case 'add':
+                    $scope.add(task);
+                    break;
 
-        let piecioshka = {
-            title: 'Is HbbTV post is published?',
-            url: 'http://piecioshka.pl/',
-            phrase: 'HbbTV',
-            delay: 10
+                case 'edit':
+                    $scope.edit(task);
+                    break;
+
+                // no default
+            }
         };
-
-        $scope.add(piecioshka);
     }
 
     _resetState() {
