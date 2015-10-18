@@ -4,15 +4,16 @@ const MILLISECONDS_IN_SECOND = 1000;
  * @param {Object} $http
  * @param {string} url
  * @param {string} phrase
- * @returns {Promise.<T>|*}
+ * @returns {Promise}
  */
 function grep($http, url, phrase) {
     console.log('grep', url, phrase);
 
-    let regexp = new RegExp(phrase);
-
-    return $http.get(url).then(response => {
-        return regexp.test(response.data);
+    return $http.post('http://localhost:3000', {
+        url: url,
+        phrase: phrase
+    }).then(response => {
+        return Boolean(response.data.status);
     });
 }
 

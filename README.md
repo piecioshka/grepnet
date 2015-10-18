@@ -1,4 +1,4 @@
-# ![](./app/images/gear-32x32.png) www.grepnet.io
+# ![](./app/images/gear-32x32.png) grepnet-client-www
 
 > Display notification popup when web page is update and plugin match passed phrase.
 

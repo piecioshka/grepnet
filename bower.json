@@ -1,5 +1,5 @@
 {
-    "name": "www.grepnet.io",
+    "name": "grepnet-client-www",
     "dependencies": {
         "bootstrap": "4.0.0-alpha",
         "angular": "~1.4.7",

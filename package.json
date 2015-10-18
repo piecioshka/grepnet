@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "www.grepnet.io",
+    "name": "grepnet-client-www",
     "version": "0.0.1",
     "description": "Display notification popup when web page is update and plugin match passed phrase.",
     "scripts": {
