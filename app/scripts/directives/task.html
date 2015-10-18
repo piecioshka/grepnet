@@ -1,0 +1,19 @@
+<div class="card text-center">
+    <div class="card-header">
+        <span class="label label-primary">{{ ::task.delay | seconder }}</span>
+    </div>
+    <div class="card-block">
+        <h4>{{ ::task.title }}</h4>
+
+        <p class="card-text">{{ ::task.url }}</p>
+        <code>{{ ::task.phrase }}</code>
+
+        <hr/>
+
+        <a class="btn btn-warning"
+                ng-click="pause($index)"
+                ng-hide="isCompleted($index)"
+                >Pause</a>
+        <a class="btn btn-danger" ng-click="remove($index)">Remove</a>
+    </div>
+</div>

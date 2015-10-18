@@ -8,7 +8,10 @@ angular.module('grepnet', ['ui.router']);
 require('./routes');
 
 require('./controllers/ApplicationController');
+require('./directives/Task');
 require('./filters/Seconder');
+require('./services/Grep');
+require('./services/Spawn');
 
 window.addEventListener('load', () => {
     if (window.Notification && Notification.permission !== 'granted') {

@@ -1,44 +1,6 @@
 const MILLISECONDS_IN_SECOND = 1000;
 
-/**
- * @param {Object} $http
- * @param {string} url
- * @param {string} phrase
- * @returns {Promise}
- */
-function grep($http, url, phrase) {
-    console.log('grep:', url, phrase);
-
-    return $http.post('http://localhost:3000', {
-        url: url,
-        phrase: phrase
-    }).then(response => {
-        return {
-            status: Boolean(response.data.status)
-        };
-    });
-}
-
-/**
- * @param {string} title
- * @param {string} url
- * @param {number} interval
- * @returns {*}
- */
-function spawn(title, url, interval) {
-    console.info('spawn:', title, url);
-    clearInterval(interval);
-    return;
-
-    if (window.Notification && Notification.permission === 'granted') {
-        return new Notification(`'${title}' completed!`, {
-            body: `We found your phrase. Please visit your URL: ${url}.`,
-            icon: './images/gear-64x64.png'
-        });
-    }
-}
-
-angular.module('grepnet').controller('ApplicationController', ($scope, $state, $http) => {
+angular.module('grepnet').controller('ApplicationController', ($scope, $state, $http, grep, spawn) => {
     let tasks = [];
 
     $scope.add = ({ title, url, phrase, delay }) => {
@@ -80,7 +42,7 @@ angular.module('grepnet').controller('ApplicationController', ($scope, $state, $
         console.warn('Task "%s" removed!', task[0].title);
     };
 
-    $scope.isCompleted = ($index) => {
+    $scope.isCompleted = $index => {
         return tasks[$index].status === 'completed';
     };
 
