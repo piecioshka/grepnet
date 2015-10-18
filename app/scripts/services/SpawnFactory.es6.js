@@ -1,15 +1,12 @@
-angular.module('grepnet').factory('spawn', () => {
+export default () => {
 
     /**
-     * @param {string} title
-     * @param {string} url
-     * @param {number} interval
+     * @param {string} title Task title.
+     * @param {string} url URL for send request.
      * @returns {*}
      */
-    function spawn(title, url, interval) {
+    let spawn = (title, url) => {
         console.info('spawn:', title, url);
-        clearInterval(interval);
-        return;
 
         if (window.Notification && Notification.permission === 'granted') {
             return new Notification(`'${title}' completed!`, {
@@ -17,7 +14,7 @@ angular.module('grepnet').factory('spawn', () => {
                 icon: './images/gear-64x64.png'
             });
         }
-    }
+    };
 
     return spawn;
-});
+};

@@ -1,4 +1,4 @@
-<div class="card text-center">
+<div class="card text-center" ng-class="{'card-success': is('completed')}">
     <div class="card-header">
         <span class="label label-primary">{{ ::task.delay | seconder }}</span>
     </div>
@@ -11,9 +11,15 @@
         <hr/>
 
         <a class="btn btn-warning"
-                ng-click="pause($index)"
-                ng-hide="isCompleted($index)"
+                ng-click="pause()"
+                ng-hide="is('paused') || is('completed')"
                 >Pause</a>
-        <a class="btn btn-danger" ng-click="remove($index)">Remove</a>
+
+        <a class="btn btn-success"
+                ng-click="start()"
+                ng-hide="is('started') || is('completed')"
+                >Start</a>
+
+        <a class="btn btn-danger" ng-click="remove()">Remove</a>
     </div>
 </div>

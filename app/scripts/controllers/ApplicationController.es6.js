@@ -1,59 +1,29 @@
-const MILLISECONDS_IN_SECOND = 1000;
+class ApplicationController {
+    $scope = null;
+    $state = null;
+    tasks = null;
 
-angular.module('grepnet').controller('ApplicationController', ($scope, $state, $http, grep, spawn) => {
-    let tasks = [];
+    constructor($scope, $state, tasks) {
+        this.$scope = $scope;
+        this.$state = $state;
+        this.tasks = tasks;
 
-    $scope.add = ({ title, url, phrase, delay }) => {
-        let interval = null;
-        let status = 'new';
+        $scope.tasks = tasks.getAll();
 
-        interval = setInterval(() => {
-            grep($http, url, phrase).then(response => {
-                console.log('... status:', response.status);
-                if (response.status) {
-                    status = 'completed';
-                    spawn(title, url, interval);
-                }
-            });
-        }, delay * MILLISECONDS_IN_SECOND);
+        $scope.add = ({ title, url, phrase, delay }) => {
+            this.tasks.add({ title, url, phrase, delay });
+            this.$state.go('list-of-tasks');
+        };
 
-        tasks.unshift({
-            title,
-            url,
-            phrase,
-            delay,
-            interval,
-            status
+        // TODO(piecioshka): Below is for development. Remove before publish.
+
+        $scope.add({
+            title: 'Is recent item exist?',
+            url: 'https://www.google.com/search?q=test',
+            phrase: 'test',
+            delay: 2
         });
-        $state.go('list-of-tasks');
-    };
+    }
+}
 
-    $scope.pause = $index => {
-        let task = tasks[$index];
-
-        console.info('Try to pause task "%s"', task.title);
-        clearInterval(task.interval);
-    };
-
-    $scope.remove = $index => {
-        $scope.pause($index);
-        let task = tasks.splice($index, 1);
-
-        console.warn('Task "%s" removed!', task[0].title);
-    };
-
-    $scope.isCompleted = $index => {
-        return tasks[$index].status === 'completed';
-    };
-
-    $scope.tasks = tasks;
-
-    // TODO(piecioshka): Below is for development. Remove before publish.
-
-    $scope.add({
-        title: 'Is recent item exist?',
-        url: 'https://www.google.com/search?q=test',
-        phrase: 'test',
-        delay: 2
-    });
-});
+export default ApplicationController;
