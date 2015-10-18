@@ -4,8 +4,6 @@ class Controller {
     interval = null;
 
     constructor($scope, $interval, grep, spawn, tasks) {
-        console.log($scope);
-
         let stopGrepping = () => {
             $interval.cancel(this.interval);
             this.interval = null;

@@ -1,25 +1,27 @@
-<div class="card text-center" ng-class="{'card-success': is('completed')}">
-    <div class="card-header">
-        <span class="label label-primary">{{ ::task.delay | seconder }}</span>
-    </div>
-    <div class="card-block">
-        <h4>{{ ::task.title }}</h4>
+<div class="col-sm-4">
+    <div class="card text-center" ng-class="{'card-success': is('completed')}">
+        <div class="card-header">
+            <span class="label label-primary">{{ ::task.delay | seconder }}</span>
+        </div>
+        <div class="card-block">
+            <h4>{{ ::task.title }}</h4>
 
-        <p class="card-text">{{ ::task.url }}</p>
-        <code>{{ ::task.phrase }}</code>
+            <p class="card-text">{{ ::task.url }}</p>
+            <code>{{ ::task.phrase }}</code>
 
-        <hr/>
+            <hr/>
 
-        <a class="btn btn-warning"
-                ng-click="pause()"
-                ng-hide="is('paused') || is('completed')"
-                >Pause</a>
+            <a class="btn btn-warning"
+                    ng-click="pause()"
+                    ng-hide="is('paused') || is('completed')"
+                    >Pause</a>
 
-        <a class="btn btn-success"
-                ng-click="start()"
-                ng-hide="is('started') || is('completed')"
-                >Start</a>
+            <a class="btn btn-success"
+                    ng-click="start()"
+                    ng-hide="is('started') || is('completed')"
+                    >Start</a>
 
-        <a class="btn btn-danger" ng-click="remove()">Remove</a>
+            <a class="btn btn-danger" ng-click="remove()">Remove</a>
+        </div>
     </div>
 </div>

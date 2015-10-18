@@ -21,7 +21,7 @@ class ApplicationController {
             title: 'Is recent item exist?',
             url: 'https://www.google.com/search?q=test',
             phrase: 'test',
-            delay: 2
+            delay: 10
         });
     }
 }
