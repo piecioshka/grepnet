@@ -45,18 +45,16 @@ mod.config(($stateProvider, $urlRouterProvider) => {
 import ApplicationController from './controllers/ApplicationController';
 import TaskDirective from './directives/TaskCard';
 import SeconderFilter from './filters/Seconder';
-import GrepFactory from './services/GrepFactory';
-import SpawnFactory from './services/SpawnFactory';
-import GrepStorage from './services/GrepStorage';
-import TasksFactory from './services/TasksFactory';
+import GrepnetNotificationFactory from './services/GrepnetNotificationFactory';
+import GrepnetStorage from './services/GrepnetStorage';
+import GrepnetTasksFactory from './services/GrepnetTasksFactory';
 
 mod.controller('ApplicationController', ApplicationController);
 mod.directive('taskCard', TaskDirective);
 mod.filter('seconder', SeconderFilter);
-mod.service('grep', GrepFactory);
-mod.service('spawn', SpawnFactory);
-mod.service('storage', GrepStorage);
-mod.service('tasks', TasksFactory);
+mod.service('spawn', GrepnetNotificationFactory);
+mod.service('storage', GrepnetStorage);
+mod.service('tasks', GrepnetTasksFactory);
 
 window.addEventListener('load', () => {
     if (window.Notification && Notification.permission !== 'granted') {

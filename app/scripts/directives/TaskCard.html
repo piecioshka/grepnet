@@ -1,5 +1,8 @@
 <div class="col-sm-4">
-    <div class="card text-center" ng-class="{'card-success': is('completed')}">
+    <div class="card text-center" ng-class="{
+                'card-success': is('completed'),
+                'card-warning': is('grepping')
+            }">
         <div class="card-header">
             <h4><span class="label label-default">{{ task.countdown | seconder }}</span></h4>
         </div>
@@ -15,12 +18,12 @@
 
             <a class="btn btn-warning"
                     ng-click="pause()"
-                    ng-hide="is('paused') || is('completed')"
+                    ng-show="is('started')"
                     >Pause</a>
 
             <a class="btn btn-primary"
                     ng-click="start()"
-                    ng-hide="is('started')"
+                    ng-show="is('paused') || is('completed')"
                     >Start</a>
 
             <a class="btn btn-info"

@@ -6,6 +6,10 @@
     margin-right: 10px;
 }
 
+.card {
+    transition: all 0.2s;
+}
+
 .card-header > h4 {
     margin-bottom: 0;
 }

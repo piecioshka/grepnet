@@ -1,4 +1,4 @@
-class GrepStorage {
+class GrepnetStorage {
     static save(name, item) {
         try {
             localStorage.setItem(name, JSON.stringify(item));
@@ -22,4 +22,4 @@ class GrepStorage {
     }
 }
 
-export default () => GrepStorage;
+export default () => GrepnetStorage;

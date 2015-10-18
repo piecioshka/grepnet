@@ -10,6 +10,8 @@ class ApplicationController {
 
         $scope.tasks = tasks.getAll();
 
+        this._resetState();
+
         $scope.add = (task) => {
             this.tasks.add(task);
             this.$state.go('list-of-tasks');
@@ -30,6 +32,14 @@ class ApplicationController {
         };
 
         $scope.add(piecioshka);
+    }
+
+    _resetState() {
+        this.$scope.tasks.forEach(function (task) {
+            if (task.state === 'started') {
+                task.state = 'new';
+            }
+        });
     }
 }
 

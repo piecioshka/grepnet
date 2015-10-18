@@ -1,5 +1,5 @@
 <div class="row">
-    <task-card ng-repeat="task in tasks"></task-card>
+    <task-card ng-repeat="task in tasks track by $index"></task-card>
 
     <div class="col-sm-12">
         <p class="alert alert-warning"

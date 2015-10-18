@@ -1,20 +1,20 @@
 <div class="update-task-form">
     <form class="col-sm-6">
         <fieldset class="form-group">
-            <input type="text" class="form-control" ng-model="title" ng-required="true" placeholder="Task title">
+            <input id="grepnet-task-title" class="form-control" type="text" ng-model="title" ng-required="true" placeholder="Task title">
         </fieldset>
 
         <fieldset class="form-group">
-            <input type="url" class="form-control" ng-model="url" ng-required="true" placeholder="URL: Where to grep?">
+            <input id="grepnet-task-url" class="form-control" type="url" ng-model="url" ng-required="true" placeholder="URL: Where to grep?">
         </fieldset>
 
         <fieldset class="form-group">
-            <input type="text" class="form-control" ng-model="phrase" ng-required="true" placeholder="Phrase: grep param?">
+            <input id="grepnet-task-phrase" class="form-control" type="text" ng-model="phrase" ng-required="true" placeholder="Phrase: grep param?">
         </fieldset>
 
         <fieldset class="form-group">
             <div class="input-group">
-                <input type="number" class="form-control" ng-model="delay" ng-required="true" placeholder="Delay: time for interval">
+                <input id="grepnet-task-delay" class="form-control" type="number" ng-model="delay" ng-required="true" placeholder="Delay: time for interval">
 
                 <div class="input-group-addon">seconds</div>
             </div>

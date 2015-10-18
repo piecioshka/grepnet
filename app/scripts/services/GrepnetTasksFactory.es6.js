@@ -3,14 +3,14 @@ export default (storage) => {
 
     return {
         add: (task) => {
-            task.status = 'new';
+            task.state = 'new';
             tasks.unshift(task);
 
             storage.save('grepnet-tasks', tasks);
         },
 
         edit: (index, task) => {
-            task.status = 'new';
+            task.state = 'new';
             tasks[index] = task;
 
             storage.save('grepnet-tasks', tasks);
