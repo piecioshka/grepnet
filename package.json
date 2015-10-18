@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "grepnet-client-www",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Display notification popup when web page is update and plugin match passed phrase.",
     "scripts": {
         "clear": "rm -rf node_modules/ app/bower_components/ app/dist/",

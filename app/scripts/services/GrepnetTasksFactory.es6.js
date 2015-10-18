@@ -1,33 +1,36 @@
-export default (storage) => {
-    let tasks = storage.load('grepnet-tasks') || [];
+class GrepnetTasksFactory {
+    tasks = null;
+    storage = null;
 
-    return {
-        add: (task) => {
-            task.state = 'new';
-            tasks.unshift(task);
+    constructor(storage) {
+        this.tasks = storage.load('grepnet-tasks') || [];
+        this.storage = storage;
+    }
 
-            storage.save('grepnet-tasks', tasks);
-        },
+    add(task) {
+        task.state = 'new';
+        this.tasks.unshift(task);
+        this.storage.save('grepnet-tasks', this.tasks);
+    }
 
-        edit: (index, task) => {
-            task.state = 'new';
-            tasks[index] = task;
+    edit(index, task) {
+        task.state = 'new';
+        this.tasks[index] = task;
+        this.storage.save('grepnet-tasks', this.tasks);
+    }
 
-            storage.save('grepnet-tasks', tasks);
-        },
+    remove(index) {
+        this.tasks.splice(index, 1);
+        this.storage.save('grepnet-tasks', this.tasks);
+    }
 
-        remove: (index) => {
-            tasks.splice(index, 1);
+    getAll() {
+        return this.tasks;
+    }
 
-            storage.save('grepnet-tasks', tasks);
-        },
+    at(index) {
+        return this.tasks[index];
+    }
+}
 
-        getAll: () => {
-            return tasks;
-        },
-
-        at: (index) => {
-            return tasks[index];
-        }
-    };
-};
+export default GrepnetTasksFactory;
