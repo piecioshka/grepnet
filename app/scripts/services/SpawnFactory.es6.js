@@ -6,11 +6,9 @@ export default () => {
      * @returns {*}
      */
     let spawn = (title, url) => {
-        console.info('spawn:', title, url);
-
         if (window.Notification && Notification.permission === 'granted') {
-            return new Notification(`'${title}' completed!`, {
-                body: `We found your phrase. Please visit your URL: ${url}.`,
+            return new Notification(`Task '${title}' completed!`, {
+                body: `We found your phrase.\nPlease visit: ${url}`,
                 icon: './images/gear-64x64.png'
             });
         }

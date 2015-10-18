@@ -1,0 +1,35 @@
+<div class="add-task-form">
+    <form class="col-sm-6">
+        <fieldset class="form-group">
+            <input type="text" class="form-control" ng-model="title" ng-required="true" placeholder="Task title">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input type="url" class="form-control" ng-model="url" ng-required="true" placeholder="URL: Where to grep?">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input type="text" class="form-control" ng-model="phrase" ng-required="true" placeholder="Phrase: grep param?">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="input-group">
+                <input type="number" class="form-control" ng-model="delay" ng-required="true" placeholder="Delay: time for interval">
+
+                <div class="input-group-addon">seconds</div>
+            </div>
+        </fieldset>
+
+        <fieldset class="">
+            <button class="btn btn-primary add-task"
+                    ng-click="add({ title: title, url: url, phrase: phrase, delay: delay })"
+                    ng-show="mode === 'add'">Add task
+            </button>
+
+            <button class="btn btn-primary add-task"
+                    ng-click="edit({ title: title, url: url, phrase: phrase, delay: delay })"
+                    ng-show="mode === 'edit'">Edit task
+            </button>
+        </fieldset>
+    </form>
+</div>

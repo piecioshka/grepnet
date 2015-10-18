@@ -3,26 +3,41 @@ class ApplicationController {
     $state = null;
     tasks = null;
 
-    constructor($scope, $state, tasks) {
+    constructor($scope, $state, $stateParams, tasks) {
         this.$scope = $scope;
         this.$state = $state;
         this.tasks = tasks;
 
         $scope.tasks = tasks.getAll();
 
-        $scope.add = ({ title, url, phrase, delay }) => {
-            this.tasks.add({ title, url, phrase, delay });
+        $scope.add = (task) => {
+            this.tasks.add(task);
+            this.$state.go('list-of-tasks');
+        };
+
+        $scope.edit = (task) => {
+            this.tasks.edit($stateParams.index, task);
             this.$state.go('list-of-tasks');
         };
 
         // TODO(piecioshka): Below is for development. Remove before publish.
 
-        $scope.add({
+        let google = {
             title: 'Is recent item exist?',
             url: 'https://www.google.com/search?q=test',
             phrase: 'test',
             delay: 10
-        });
+        };
+
+        let piecioshka = {
+            title: 'Is HbbTV post is published?',
+            url: 'http://piecioshka.pl/',
+            phrase: 'HbbTV',
+            delay: 10
+        };
+
+        // $scope.add(google);
+        $scope.add(piecioshka);
     }
 }
 

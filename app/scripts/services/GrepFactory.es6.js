@@ -6,8 +6,6 @@ export default $http => {
      * @returns {Promise}
      */
     let grep = (url, phrase) => {
-        console.log('grep:', url, phrase);
-
         let options = { url, phrase };
 
         return $http.post('http://localhost:3000', options).then(response => {

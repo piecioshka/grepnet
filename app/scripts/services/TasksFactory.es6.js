@@ -2,8 +2,14 @@ export default () => {
     let tasks = [];
 
     return {
-        add: ({ title, url, phrase, delay }) => {
-            tasks.unshift({ title, url, phrase, delay, status: 'started' });
+        add: (task) => {
+            task.status = 'started';
+            tasks.unshift(task);
+        },
+
+        edit: (index, task) => {
+            task.status = 'started';
+            tasks[index] = task;
         },
 
         remove(index) {
@@ -12,6 +18,10 @@ export default () => {
 
         getAll: () => {
             return tasks;
+        },
+
+        at: (index) => {
+            return tasks[index];
         }
     };
 };

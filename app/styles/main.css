@@ -5,3 +5,7 @@
 .logo {
     margin-right: 10px;
 }
+
+.card-header > h4 {
+    margin-bottom: 0;
+}
