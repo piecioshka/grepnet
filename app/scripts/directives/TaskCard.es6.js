@@ -22,36 +22,44 @@ class Controller {
         this.tasks = tasks;
 
         $scope.pause = () => {
-            this.stopGrepping();
+            this.stopCountdown();
             $scope.task.state = 'paused';
             this._save();
         };
 
         $scope.start = () => {
-            this.startGrepping();
+            this.startCountdown();
             $scope.task.state = 'started';
             this._save();
         };
 
         $scope.edit = () => {
-            this.stopGrepping();
+            this.stopCountdown();
             $state.go('edit-task', {
                 index: $scope.$index
             });
         };
 
         $scope.remove = () => {
-            this.stopGrepping();
+            this.stopCountdown();
             tasks.remove($scope.$index);
+        };
+
+        $scope.check = () => {
+            this.startGrepping();
         };
 
         $scope.is = (state) => {
             return $scope.task.state === state;
         };
 
-        if ($scope.is('new')) {
-            this.startGrepping();
-            $scope.task.state = 'started';
+        this._tryStartCountdown();
+    }
+
+    _tryStartCountdown() {
+        if (this.$scope.is('new')) {
+            this.startCountdown();
+            this.$scope.task.state = 'started';
             this._save();
         }
     }
@@ -60,7 +68,7 @@ class Controller {
         this.storage.save('grepnet-tasks', this.tasks.getAll());
     }
 
-    stopGrepping() {
+    stopCountdown() {
         this.$interval.cancel(this.countdownInterval);
         this.countdownInterval = null;
 
@@ -72,11 +80,6 @@ class Controller {
         this.$scope.task.countdown = this.$scope.task.delay;
     }
 
-    /**
-     * @param {string} url Task URL.
-     * @param {string} phrase Phrase to grepping.
-     * @returns {Promise}
-     */
     grep(url, phrase) {
         let options = { url, phrase };
 
@@ -88,29 +91,31 @@ class Controller {
     }
 
     startGrepping() {
+        this.$scope.task.state = 'grepping';
+
+        this.grep(this.$scope.task.url, this.$scope.task.phrase).then((response) => {
+            this.resetCountdown();
+
+            if (response.status) {
+                this.stopCountdown();
+                this.$scope.task.state = 'completed';
+                this.notification.spawn(this.$scope.task.title, this.$scope.task.url);
+            } else {
+                this.$scope.task.state = 'started';
+            }
+
+            this._save();
+        });
+    }
+
+    startCountdown() {
         this.resetCountdown();
 
         this.countdownInterval = this.$interval(() => {
             this.$scope.task.countdown--;
         }, MILLISECONDS_IN_SECOND);
 
-        this.grepInterval = this.$interval(() => {
-            this.$scope.task.state = 'grepping';
-
-            this.grep(this.$scope.task.url, this.$scope.task.phrase).then((response) => {
-                this.resetCountdown();
-
-                if (response.status) {
-                    this.stopGrepping();
-                    this.$scope.task.state = 'completed';
-                    this.notification.spawn(this.$scope.task.title, this.$scope.task.url);
-                } else {
-                    this.$scope.task.state = 'started';
-                }
-
-                this._save();
-            });
-        }, this.$scope.task.delay * MILLISECONDS_IN_SECOND);
+        this.grepInterval = this.$interval(() => this.startGrepping(), this.$scope.task.delay * MILLISECONDS_IN_SECOND);
     }
 }
 
