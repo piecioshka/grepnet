@@ -2,6 +2,6 @@
     <task ng-repeat="task in tasks"></task>
 
     <div class="col-sm-12">
-        <p ng-show="tasks.length === 0">Task list is empty. Please <a ui-sref="add-task">add</a> task!</p>
+        <p ng-if="tasks.length === 0">Task list is empty. Please <a ui-sref="add-task">add</a> task!</p>
     </div>
 </div>

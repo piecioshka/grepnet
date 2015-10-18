@@ -23,12 +23,12 @@
         <fieldset class="">
             <button class="btn btn-primary add-task"
                     ng-click="add({ title: title, url: url, phrase: phrase, delay: delay })"
-                    ng-show="mode === 'add'">Add task
+                    ng-if="mode === 'add'">Add task
             </button>
 
             <button class="btn btn-primary add-task"
                     ng-click="edit({ title: title, url: url, phrase: phrase, delay: delay })"
-                    ng-show="mode === 'edit'">Edit task
+                    ng-if="mode === 'edit'">Edit task
             </button>
         </fieldset>
     </form>
