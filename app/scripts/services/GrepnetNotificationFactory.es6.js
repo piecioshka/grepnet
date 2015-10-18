@@ -19,5 +19,7 @@ export default () => {
         }
     }
 
-    return spawn;
+    return {
+        spawn
+    };
 };

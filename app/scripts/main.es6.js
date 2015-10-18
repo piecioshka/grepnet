@@ -52,7 +52,7 @@ import GrepnetTasksFactory from './services/GrepnetTasksFactory';
 mod.controller('ApplicationController', ApplicationController);
 mod.directive('taskCard', TaskDirective);
 mod.filter('seconder', SeconderFilter);
-mod.service('spawn', GrepnetNotificationFactory);
+mod.service('notification', GrepnetNotificationFactory);
 mod.service('storage', GrepnetStorage);
 mod.service('tasks', GrepnetTasksFactory);
 

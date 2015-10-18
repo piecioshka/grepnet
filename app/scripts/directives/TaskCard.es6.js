@@ -5,19 +5,19 @@ class Controller {
     $scope = null;
     $interval = null;
 
-    spawn = null;
+    notification = null;
     storage = null;
     tasks = null;
 
     countdownInterval = null;
     grepInterval = null;
 
-    constructor($http, $scope, $state, $interval, spawn, storage, tasks) {
+    constructor($http, $scope, $state, $interval, notification, storage, tasks) {
         this.$http = $http;
         this.$scope = $scope;
         this.$interval = $interval;
 
-        this.spawn = spawn;
+        this.notification = notification;
         this.storage = storage;
         this.tasks = tasks;
 
@@ -103,7 +103,7 @@ class Controller {
                 if (response.status) {
                     this.stopGrepping();
                     this.$scope.task.state = 'completed';
-                    this.spawn(this.$scope.task.title, this.$scope.task.url);
+                    this.notification.spawn(this.$scope.task.title, this.$scope.task.url);
                 } else {
                     this.$scope.task.state = 'started';
                 }
