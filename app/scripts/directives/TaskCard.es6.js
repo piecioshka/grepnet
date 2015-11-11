@@ -81,9 +81,10 @@ class Controller {
     }
 
     grep(url, phrase) {
+        let host = window.location.host;
         let options = { url, phrase };
 
-        return this.$http.post('http://0.0.0.0:3000', options).then((response) => {
+        return this.$http.post(`http://${host}:3000`, options).then((response) => {
             return {
                 status: Boolean(response.data.status)
             };
