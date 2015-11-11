@@ -13,6 +13,12 @@ Add task is simple.
 
 When checker match phrase you will get notification on your desktop.
 
+## Developer Setup
+
+```
+make
+```
+
 ## Technical specification
 
  - Use Bootstrap 4: http://v4-alpha.getbootstrap.com/
