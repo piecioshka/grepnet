@@ -27,7 +27,11 @@ module.exports = {
             {
                 test: /\.es6\.js/,
                 exclude: /node_modules/,
-                loader: 'babel-loader?stage=0'
+                loader: 'babel-loader',
+                query: {
+                    cacheDirectory: true,
+                    presets: ['es2015', 'stage-0']
+                }
             }
         ]
     }
