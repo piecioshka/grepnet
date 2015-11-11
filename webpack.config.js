@@ -20,11 +20,6 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.scss/,
-                exclude: /node_modules/,
-                loader: 'style-loader!css-loader!sass-loader'
-            },
-            {
                 test: /\.es6\.js/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
