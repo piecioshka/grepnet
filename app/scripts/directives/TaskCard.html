@@ -1,5 +1,6 @@
 <div class="col-sm-4">
     <div class="card text-center" ng-class="{
+                'card-danger': is('error'),
                 'card-success': is('completed'),
                 'card-warning': is('grepping')
             }">
@@ -23,7 +24,7 @@
 
             <a class="btn btn-primary"
                     ng-click="start()"
-                    ng-show="is('paused') || is('completed')"
+                    ng-show="is('paused') || is('completed') || is('error')"
                     >Start</a>
 
             <a class="btn btn-info"

@@ -106,6 +106,9 @@ class Controller {
             }
 
             this._save();
+        }, () => {
+            this.resetCountdown();
+            this.$scope.task.state = 'error';
         });
     }
 
