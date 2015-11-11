@@ -19,10 +19,6 @@ When checker match phrase you will get notification on your desktop.
 make
 ```
 
-## Technical specification
-
- - Use Bootstrap 4: http://v4-alpha.getbootstrap.com/
-
 ## License
 
 [The MIT License](http://piecioshka.mit-license.org)
