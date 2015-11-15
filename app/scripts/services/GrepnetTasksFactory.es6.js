@@ -2,6 +2,7 @@ class GrepnetTasksFactory {
     tasks = null;
     storage = null;
 
+    /* @ngInject */
     constructor(storage) {
         this.tasks = storage.load('grepnet-tasks') || [];
         this.storage = storage;

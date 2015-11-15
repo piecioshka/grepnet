@@ -5,6 +5,7 @@ require('./vendor/proposal-string-pad-left-right/polyfill');
 
 let mod = angular.module('grepnet', ['ui.router']);
 
+/* @ngInject */
 mod.config(($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('list-of-tasks', {
         url: '/list',

@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "grepnet-client-www",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Display notification popup when web page is update and grepnet match passed phrase.",
     "scripts": {
         "clear": "rm -rf node_modules/ app/bower_components/ app/dist/",
@@ -27,7 +27,7 @@
         "babel-preset-stage-0": "^6.1.2",
         "eslint": "^1.9.0",
         "eslint-config-piecioshka": "^1.0.9",
-        "eslint-loader": "^1.1.1",
+        "ng-annotate-webpack-plugin": "^0.1.2",
         "webpack": "^1.12.4"
     }
 }

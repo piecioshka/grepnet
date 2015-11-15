@@ -1,3 +1,5 @@
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+
 module.exports = {
     resolve: {
         extensions: ['.es6.js', '.js', '']
@@ -9,14 +11,8 @@ module.exports = {
     },
     module: {
         noParse: [
-            /scripts\/vendor/
-        ],
-        preLoaders: [
-            {
-                test: /\.es6\.js/,
-                exclude: /node_modules/,
-                loader: 'eslint-loader'
-            }
+            /bower_components/,
+            /vendor/
         ],
         loaders: [
             {
@@ -29,5 +25,10 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new ngAnnotatePlugin({
+            add: true
+        })
+    ]
 };

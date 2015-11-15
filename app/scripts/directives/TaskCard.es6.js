@@ -12,6 +12,7 @@ class Controller {
     countdownInterval = null;
     grepInterval = null;
 
+    /* @ngInject */
     constructor($http, $scope, $state, $interval, notification, storage, tasks) {
         this.$http = $http;
         this.$scope = $scope;

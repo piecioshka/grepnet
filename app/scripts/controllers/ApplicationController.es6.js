@@ -3,6 +3,7 @@ class ApplicationController {
     $state = null;
     tasks = null;
 
+    /* @ngInject */
     constructor($scope, $rootScope, $state, $stateParams, tasks) {
         this.$scope = $scope;
         this.$state = $state;
