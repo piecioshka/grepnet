@@ -1,4 +1,5 @@
 {
+    "private": true,
     "name": "grepnet-client-www",
     "dependencies": {
         "bootstrap": "4.0.0-alpha",
