@@ -16,7 +16,9 @@ When checker match phrase you will get notification on your desktop.
 ## Developer Setup
 
 ```
-make
+npm install
+npx bower install
+npm start
 ```
 
 ## License

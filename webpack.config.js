@@ -1,9 +1,6 @@
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
-    resolve: {
-        extensions: ['.es6.js', '.js', '']
-    },
     entry: './app/scripts/main',
     output: {
         filename: 'main.js',
@@ -16,7 +13,7 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.es6\.js/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
