@@ -5,7 +5,9 @@
     "description": "Display notification popup when web page is update and grepnet match passed phrase.",
     "scripts": {
         "clear": "rm -rf node_modules/ app/bower_components/ app/dist/",
-        "lint": "eslint ./app/scripts/* --ignore-pattern ./app/scripts/vendor/ ; exit 0"
+        "lint": "eslint ./app/scripts/* --ignore-pattern ./app/scripts/vendor/ ; exit 0",
+        "build": "webpack",
+        "start": "http-server app/"
     },
     "eslintConfig": {
         "extends": "piecioshka",
@@ -29,5 +31,8 @@
         "eslint-config-piecioshka": "^1.0.9",
         "ng-annotate-webpack-plugin": "^0.1.2",
         "webpack": "^1.12.4"
+    },
+    "dependencies": {
+        "http-server": "^0.12.3"
     }
 }
