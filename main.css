@@ -1,0 +1,25 @@
+/*!***********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/main.css ***!
+  \***********************************************************************/
+#main {
+    margin-top: 20px;
+}
+
+.logo {
+    margin-right: 10px;
+}
+
+.card {
+    transition: all 0.2s;
+}
+
+.card-header > h4 {
+    margin-bottom: 0;
+}
+
+.card-block {
+    overflow: hidden;
+}
+
+
+/*# sourceMappingURL=main.css.map*/
