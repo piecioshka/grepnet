@@ -1,0 +1,4 @@
+export const config = {
+  MILLISECONDS_IN_SECOND: 1000,
+  CLOSE_NOTIFICATION_DELAY: 10 * 1000,
+};

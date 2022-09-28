@@ -1,26 +1,16 @@
-# ![](./app/images/gear-32x32.png) grepnet-client-www
+# ![](./src/images/gear-32x32.png) grepnet-client-www
 
-> Display notification popup when web page is update and grepnet match passed phrase.
+Display notification popup when web page is update and grepnet match passed phrase.
 
-## Usage
+## Features
 
-Add task is simple.
-
-1. Put task name.
-2. Put URL to scan.
-3. Put phrase to search.
-4. Put interval time.
-
-When checker match phrase you will get notification on your desktop.
-
-## Developer Setup
-
-```
-npm install
-npx bower install
-npm start
-```
+* Display list of task
+* Add a regular task
+* Edit a regular task
+* Remove a regular task
+* Display notification when task is completed
+* Make a request to complete a task
 
 ## License
 
-[The MIT License](http://piecioshka.mit-license.org)
+[The MIT License](http://piecioshka.mit-license.org) @ 2015-2022

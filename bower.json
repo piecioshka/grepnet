@@ -1,9 +1,0 @@
-{
-    "private": true,
-    "name": "grepnet-client-www",
-    "dependencies": {
-        "bootstrap": "4.0.0-alpha",
-        "angular": "~1.4.7",
-        "angular-ui-router": "~0.2.15"
-    }
-}
