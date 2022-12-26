@@ -148,7 +148,7 @@ export class Task extends Component {
   }
 
   #getDelay() {
-    const { value, unit } = this.#task;
+    const { delay: value, unit } = this.#task;
 
     switch (unit) {
       case 'hours':
