@@ -1,19 +1,13 @@
-#main {
-    margin-top: 20px;
-}
-
-.logo {
-    margin-right: 10px;
-}
-
 .card {
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
-.card-header > h4 {
-    margin-bottom: 0;
+dl dt {
+  clear: both;
+  float: left;
+  margin-right: 10px;
 }
 
-.card-block {
-    overflow: hidden;
+dd {
+  float: left;
 }

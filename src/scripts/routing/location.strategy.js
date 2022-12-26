@@ -1,6 +1,6 @@
 export class LocationHashStrategy {
   getUrl() {
-    return location.hash.slice(1) || '/';
+    return
   }
   open(url) {
     location.hash = url;

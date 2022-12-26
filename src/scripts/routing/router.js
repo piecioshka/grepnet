@@ -1,38 +1,24 @@
-/**
- * @typedef RouterStrategy
- * @property {Function} getUrl
- * @property {Function} open
- */
-
 export class Router {
-  /**
-   * @type {RouterStrategy|null}
-   */
-  strategy = null;
+  routes = {};
 
-  setStrategy(strategy) {
-    this.strategy = strategy;
-  }
   use(routes) {
     this.routes = routes;
   }
+
   #resolveRoute($outlet) {
-    const currentUrl = this.strategy?.getUrl();
-    const route = this.routes[currentUrl];
+    const path = location.hash.slice(1) || '/';
+    const route = this.routes[path];
     if (!route) {
-      console.warn(`not supported url "${currentUrl}"`);
+      console.warn(`not supported url "${path}"`);
       return;
     }
     route($outlet);
   }
+
   start($outlet) {
     this.#resolveRoute($outlet);
-    window.addEventListener(
-      'hashchange',
-      this.#resolveRoute.bind(this, $outlet),
-    );
-  }
-  go(hash) {
-    this.strategy?.open(hash);
+    window.addEventListener('hashchange', () => {
+      this.#resolveRoute($outlet);
+    });
   }
 }

@@ -1,4 +1,4 @@
-const pad = (n) => String(n).padEnd(2, '0');
+import { pad } from './string.util';
 
 export const numberToDate = (number) => {
   const hours = Math.floor(number / 3600);

@@ -1,20 +1,18 @@
+const path = require('node:path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const path = require('path');
+const root = path.join(__dirname, '..');
 
 module.exports = {
-  mode: 'development',
-
-  devtool: 'source-map',
-
   entry: [
-    path.join(__dirname, 'src', 'scripts', 'main.js'),
-    path.join(__dirname, 'src', 'index.html'),
+    path.join(root, 'src', 'scripts', 'main.js'),
+    path.join(root, 'src', 'index.html'),
   ],
 
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.join(root, 'dist'),
   },
 
   module: {
@@ -57,5 +55,10 @@ module.exports = {
     ],
   },
 
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: 'src/images/', to: 'images/' }],
+    }),
+  ],
 };

@@ -1,5 +1,3 @@
-import { clearElement } from '../utils/clearElement.util';
-
 export class Component {
   template() {
     return '';
@@ -13,7 +11,6 @@ export class Component {
 
   render($outlet) {
     this.$el = this.compile();
-    clearElement($outlet);
     $outlet.append(this.$el);
   }
 }

@@ -4,7 +4,7 @@ module.exports = {
   // http://eslint.org/docs/user-guide/configuring#specifying-environments
   env: {
     browser: true,
-    // node: true,
+    node: true,
     commonjs: true,
     es6: true,
     // amd: true,
