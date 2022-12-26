@@ -16,7 +16,7 @@ module.exports = {
 
   // http://eslint.org/docs/rules/
   rules: {
-    indent: ['error', 2],
+    indent: ['error', 2, { SwitchCase: 1 }],
     'no-magic-numbers': 'off',
     'require-jsdoc': 'off',
     'default-case': 'off',

@@ -1,5 +1,6 @@
 /* eslint-disable max-statements */
 import { config } from '../config';
+import { MS_IN_SECOND } from '../constant';
 import { Component } from './component';
 import { TasksService } from '../services/tasks.service';
 import { StorageService } from '../services/storage.service';
@@ -121,10 +122,6 @@ export class Task extends Component {
     this.#grepInterval = null;
   }
 
-  #resetCountdown() {
-    // this.#task.countdown = this.#task.delay;
-  }
-
   async #startGrepping() {
     this.#task.state = 'grepping';
     this.#updateCardStyle();
@@ -133,7 +130,6 @@ export class Task extends Component {
 
     try {
       const response = await GrepService.grep(url, phrase);
-      this.#resetCountdown();
 
       if (response.found) {
         this.#stopCountdown();
@@ -146,26 +142,32 @@ export class Task extends Component {
       }
       this.#save();
     } catch (err) {
-      this.#resetCountdown();
       this.#task.state = 'error';
       this.#updateCardStyle();
     }
   }
 
-  #startCountdown() {
-    this.#resetCountdown();
+  #getDelay() {
+    const { value, unit } = this.#task;
 
+    switch (unit) {
+      case 'hours':
+        return value * 60 * 60 * MS_IN_SECOND;
+      case 'minutes':
+        return value * 60 * MS_IN_SECOND;
+      case 'seconds':
+        return value * MS_IN_SECOND;
+    }
+  }
+
+  #startCountdown() {
     if (!this.#task) {
       return;
     }
 
-    this.#countdownInterval = setInterval(() => {
-      // this.#task.countdown--;
-    }, config.MILLISECONDS_IN_SECOND);
-
     this.#grepInterval = setInterval(
       () => this.#startGrepping(),
-      this.#task.delay * config.MILLISECONDS_IN_SECOND,
+      this.#getDelay(),
     );
   }
 
