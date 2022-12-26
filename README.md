@@ -1,13 +1,17 @@
-# ![](./src/images/gear-32x32.png) grepnet-client-www
+# grepnet-client-www
 
-Display notification popup when web page is update and grepnet match passed phrase.
+🕸 Display notification popup when web page is update and grepnet match passed phrase
+
+## Demo 🎉
+
+<https://grepnet.piecioshka.io>
 
 ## Features
 
 * ✅ Display list of task
-* ✅ Add a regular task
-* ✅ Edit a regular task
-* ✅ Remove a regular task
+* ✅ Add a task
+* ✅ Edit a task
+* ✅ Remove a task
 * ✅ Display notification when task is completed
 * ✅ Make a request to complete a task
 
