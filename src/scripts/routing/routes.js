@@ -14,7 +14,12 @@ function renderPage(constructor) {
 export const routes = {
   '/add': renderPage(TaskAddPage),
   '/remove/:id': ($outlet, params) => {
-    TasksService.removeById(params.id);
+    const sure = window.confirm('Are you sure?');
+
+    if (sure) {
+      TasksService.removeById(params.id);
+    }
+
     location.hash = '/';
   },
   '/edit/:id': renderPage(TaskEditPage),

@@ -1,6 +1,6 @@
 # grepnet-client-www
 
-🕸 Display notification popup when web page is update and grepnet match passed phrase
+🕸 Create tasks for search phrases on any page
 
 ## Demo 🎉
 
