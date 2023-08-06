@@ -6,8 +6,8 @@ const root = path.join(__dirname, '..');
 
 module.exports = {
   entry: [
-    path.join(root, 'src', 'scripts', 'main.js'),
-    path.join(root, 'src', 'index.html'),
+    path.join(root, 'client', 'scripts', 'main.js'),
+    path.join(root, 'client', 'index.html'),
   ],
 
   output: {
@@ -58,7 +58,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new CopyPlugin({
-      patterns: [{ from: 'src/images/', to: 'images/' }],
+      patterns: [{ from: 'client/images/', to: 'images/' }],
     }),
   ],
 };

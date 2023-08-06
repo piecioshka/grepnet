@@ -1,8 +1,8 @@
-# grepnet-client-www
+# grepnet
 
-🕸 Create tasks for search phrases on any page
+🕸 Webscrapper
 
-## Demo 🎉
+## Preview 🎉
 
 <https://grepnet.piecioshka.io>
 
@@ -14,6 +14,15 @@
 * ✅ Remove a task
 * ✅ Display notification when task is completed
 * ✅ Make a request to complete a task
+
+## Usage
+
+```bash
+# GET
+curl http://localhost:3000/
+# POST
+curl -d url=https://piecioshka.pl&phrase=Kowalski localhost:3000
+```
 
 ## How to run with `PM2`?
 

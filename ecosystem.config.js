@@ -1,10 +1,10 @@
 module.exports = {
   apps: [
     {
-      name: 'grepnet-client-www',
+      name: 'grepnet',
       script: 'start.sh',
       env: {
-        PORT: 8086,
+        PORT: 8085,
       },
     },
   ],
