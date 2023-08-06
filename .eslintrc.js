@@ -17,6 +17,7 @@ module.exports = {
   // http://eslint.org/docs/rules/
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
+    'new-cap': 'off',
     'no-alert': 'off',
     'no-magic-numbers': 'off',
     'require-jsdoc': 'off',
@@ -31,7 +32,7 @@ module.exports = {
     'smells/no-this-assign': 'error',
 
     'import/first': 'error',
-    'import/newline-after-import': 'error',
+    // 'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': 'error',
   },

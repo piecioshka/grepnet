@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 
 /**
- * @param {express.Request} req
- * @param {express.Response} res
+ * @param {express.Request} _req
+ * @param {express.Response} _res
  * @param {express.NextFunction} next
  */
-function errorHandler(req, res, next) {
+function errorHandler(_req, _res, next) {
   next({
-    status: "error",
+    status: 'error',
     error: {
-      message: "Not Found",
+      message: 'Not Found',
       statusCode: 404,
     },
   });
@@ -19,9 +19,9 @@ function errorHandler(req, res, next) {
  * @param {Record<string, any>} err
  * @param {express.Request} req
  * @param {express.Response} res
- * @param {express.NextFunction} next
+ * @param {express.NextFunction} _next
  */
-function genericErrorHandler(err, req, res, next) {
+function genericErrorHandler(err, req, res, _next) {
   res.status(err.error.statusCode || 500).json(err);
 }
 

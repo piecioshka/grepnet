@@ -1,10 +1,6 @@
 # grepnet
 
-🕸 Webscrapper
-
-## Preview 🎉
-
-<https://grepnet.piecioshka.io>
+🕸 Web Scraper
 
 ## Features
 
@@ -38,4 +34,4 @@ PORT=4000 npm start
 
 ## License
 
-[The MIT License](http://piecioshka.mit-license.org) @ 2015-2022
+[The MIT License](http://piecioshka.mit-license.org) @ 2015-2023

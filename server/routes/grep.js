@@ -1,5 +1,5 @@
-require("isomorphic-fetch");
-const express = require("express");
+require('isomorphic-fetch');
+const express = require('express');
 const router = express.Router();
 
 /**
@@ -7,13 +7,13 @@ const router = express.Router();
  *   url: string
  *   phrase: string
  */
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const { url, phrase } = req.body;
 
   try {
     const response = await fetch(url);
     const body = await response.text();
-    const found = new RegExp(phrase, "i").test(body);
+    const found = new RegExp(phrase, 'i').test(body);
     console.log(`> ${url}: "${phrase}" => ${found}`);
     res.json({ url, phrase, found });
   } catch (error) {
@@ -23,5 +23,5 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = (app) => {
-  app.use("/grep", router);
+  app.use('/grep', router);
 };

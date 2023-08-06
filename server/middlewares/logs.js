@@ -1,9 +1,9 @@
-const morgan = require("morgan");
+const morgan = require('morgan');
 
 module.exports = (app) => {
   app.use(
-    morgan("dev", {
+    morgan('dev', {
       skip: (req, res) => res.statusCode < 400,
-    })
+    }),
   );
 };
