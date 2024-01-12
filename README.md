@@ -22,6 +22,14 @@ pm2 start ecosystem.config.js
 ```bash
 npm run build
 npm run start
+# npm run start:prod
+```
+
+## Development
+
+```bash
+npm run watch
+npm run dev
 ```
 
 ## License
