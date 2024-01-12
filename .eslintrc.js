@@ -41,8 +41,8 @@ module.exports = {
   globals: {},
 
   parserOptions: {
-    // Support syntax ES2022
-    ecmaVersion: 2022,
+    // Support syntax ES2023
+    ecmaVersion: 2023,
 
     // Support syntax ES2015 Import/Export
     sourceType: 'module',

@@ -11,27 +11,19 @@
 * ✅ Display notification when task is completed
 * ✅ Make a request to complete a task
 
-## Usage
-
-```bash
-# GET
-curl http://localhost:3000/
-# POST
-curl -d url=https://piecioshka.pl&phrase=Kowalski localhost:3000
-```
-
 ## How to run with `PM2`?
 
 ```bash
 pm2 start ecosystem.config.js
 ```
 
-## How to run on local?
+## How to run on localhost?
 
 ```bash
-PORT=4000 npm start
+npm run build
+npm run start
 ```
 
 ## License
 
-[The MIT License](http://piecioshka.mit-license.org) @ 2015-2023
+[The MIT License](http://piecioshka.mit-license.org) @ 2015-2024

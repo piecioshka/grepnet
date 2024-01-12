@@ -9,7 +9,7 @@ require('./middlewares/cors')(app);
 require('./middlewares/logs')(app);
 require('./middlewares/tweak')(app);
 // require("./middlewares/logs-persisted")(app);
-// require("./middlewares/static")(app);
+require('./middlewares/static')(app);
 
 // require("./routes/grafana")(app);
 require('./routes/grep')(app);
