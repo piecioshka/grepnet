@@ -13,9 +13,9 @@
     "dev": "nodemon server/main.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.1",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "morgan": "^1.10.0",
     "prom-client": "^15.1.3"
   },
