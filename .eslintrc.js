@@ -1,6 +1,8 @@
 module.exports = {
   extends: 'piecioshka',
 
+  plugins: ['smells', 'import'],
+
   // http://eslint.org/docs/user-guide/configuring#specifying-environments
   env: {
     browser: true,
@@ -47,6 +49,4 @@ module.exports = {
     // Support syntax ES2015 Import/Export
     sourceType: 'module',
   },
-
-  plugins: ['smells', 'clean-regex', 'import'],
 };
