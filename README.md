@@ -11,12 +11,6 @@
 * ✅ Display notification when task is completed
 * ✅ Make a request to complete a task
 
-## How to run with `PM2`?
-
-```bash
-pm2 start ecosystem.config.js
-```
-
 ## How to run on localhost?
 
 ```bash
