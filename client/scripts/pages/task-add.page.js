@@ -20,7 +20,7 @@ export class TaskAddPage extends Page {
     super.render($outlet);
 
     const fakeTask = {
-      url: 'http://piecioshka.pl',
+      url: 'https://piecioshka.pl',
       delay: 123,
       title: 'przykładowe zadanie',
       phrase: 'Kowalski',
