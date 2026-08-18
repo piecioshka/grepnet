@@ -5,10 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const root = path.join(__dirname, '..');
 
 module.exports = {
-  entry: [
-    path.join(root, 'client', 'scripts', 'main.js'),
-    path.join(root, 'client', 'index.html'),
-  ],
+  entry: [path.join(root, 'client', 'scripts', 'main.js')],
 
   output: {
     filename: 'bundle.js',
@@ -23,32 +20,6 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
-          },
-          'extract-loader',
-          {
-            loader: 'html-loader',
-            options: {
-              sources: {
-                list: [
-                  {
-                    tag: 'img',
-                    attribute: 'src',
-                    type: 'src',
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
@@ -58,7 +29,10 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new CopyPlugin({
-      patterns: [{ from: 'client/images/', to: 'images/' }],
+      patterns: [
+        { from: 'client/index.html', to: 'index.html' },
+        { from: 'client/images/', to: 'images/' },
+      ],
     }),
   ],
 };

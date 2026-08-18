@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import { config } from '../config';
 import { MS_IN_SECOND } from '../constant';
 import { Component } from './component';

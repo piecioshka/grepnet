@@ -4,12 +4,12 @@
 
 ## Features
 
-* ✅ Display list of task
-* ✅ Add a task
-* ✅ Edit a task
-* ✅ Remove a task
-* ✅ Display notification when task is completed
-* ✅ Make a request to complete a task
+- ✅ Display list of task
+- ✅ Add a task
+- ✅ Edit a task
+- ✅ Remove a task
+- ✅ Display notification when task is completed
+- ✅ Make a request to complete a task
 
 ## How to run on localhost?
 

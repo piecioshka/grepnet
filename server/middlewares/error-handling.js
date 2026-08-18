@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars -- used in JSDoc type annotations
 const express = require('express');
 
 /**
