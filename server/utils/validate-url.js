@@ -10,7 +10,8 @@ function isPrivateAddress(address, family) {
       return true;
     }
     // Link-local (fe80::/10) and unique local (fc00::/7) addresses
-    if (ip.startsWith('fe80:') || ip.startsWith('fc') || ip.startsWith('fd')) {
+    const firstHextet = parseInt(ip.split(':', 1)[0] || '0', 16);
+    if ((firstHextet & 0xffc0) === 0xfe80 || (firstHextet & 0xfe00) === 0xfc00) {
       return true;
     }
     // IPv4-mapped IPv6 addresses, e.g. ::ffff:127.0.0.1 or ::ffff:7f00:1
