@@ -51,6 +51,7 @@ function isPrivateAddress(address, family) {
  * and does not point at an internal host (loopback, link-local, private).
  *
  * @param {string} url
+ * @returns {Promise<string>} The validated URL with resolved IP address
  * @throws {Error} When the URL is invalid or points at an internal host.
  */
 async function assertPublicHttpUrl(url) {
@@ -86,6 +87,12 @@ async function assertPublicHttpUrl(url) {
       throw new Error('Requests to internal hosts are not allowed');
     }
   }
+
+  // Return URL with resolved IP to prevent DNS rebinding
+  const resolvedAddress = addresses[0].address;
+  const resolvedUrl = new URL(url);
+  resolvedUrl.hostname = resolvedAddress;
+  return resolvedUrl.toString();
 }
 
 module.exports = { assertPublicHttpUrl };

@@ -27,8 +27,8 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    await assertPublicHttpUrl(url);
-    const response = await fetch(url);
+    const resolvedUrl = await assertPublicHttpUrl(url);
+    const response = await fetch(resolvedUrl);
     const body = await response.text();
     const found = new RegExp(escapeRegExp(phrase), 'i').test(body);
     console.log(`> ${url}: "${phrase}" => ${found}`);
