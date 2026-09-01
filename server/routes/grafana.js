@@ -7,7 +7,8 @@ router.get('/', async (_req, res) => {
     res.set('Content-Type', register.contentType);
     res.end(await register.metrics());
   } catch (err) {
-    res.status(500).end(err);
+    console.error(err);
+    res.status(500).end('Internal server error');
   }
 });
 
