@@ -1,5 +1,12 @@
 const express = require('express');
-const { assertPublicHttpUrl } = require('../utils/validate-url');
+// fetch from undici, not the global one - a dispatcher is only accepted by
+// the fetch built from the same undici version
+const { fetch } = require('undici');
+const {
+  assertPublicHttpUrl,
+  publicHttpDispatcher,
+  INTERNAL_HOST_MESSAGE,
+} = require('../utils/validate-url');
 const router = express.Router();
 
 const MAX_PHRASE_LENGTH = 200;
@@ -27,15 +34,23 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const resolvedUrl = await assertPublicHttpUrl(url);
-    const response = await fetch(resolvedUrl);
+    assertPublicHttpUrl(url);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+
+  try {
+    const response = await fetch(url, { dispatcher: publicHttpDispatcher });
     const body = await response.text();
     const found = new RegExp(escapeRegExp(phrase), 'i').test(body);
     console.log(`> ${url}: "${phrase}" => ${found}`);
     res.json({ url, phrase, found });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: error.message });
+    if (error.cause && error.cause.message === INTERNAL_HOST_MESSAGE) {
+      return res.status(400).json({ message: INTERNAL_HOST_MESSAGE });
+    }
+    res.status(502).json({ message: 'Unable to fetch the requested URL' });
   }
 });
 

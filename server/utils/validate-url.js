@@ -1,7 +1,10 @@
 const dns = require('node:dns');
 const net = require('node:net');
+const { Agent, buildConnector } = require('undici');
 
 const BLOCKED_HOSTNAMES = new Set(['localhost']);
+
+const INTERNAL_HOST_MESSAGE = 'Requests to internal hosts are not allowed';
 
 function isPrivateAddress(address, family) {
   if (family === 6) {
@@ -11,7 +14,10 @@ function isPrivateAddress(address, family) {
     }
     // Link-local (fe80::/10) and unique local (fc00::/7) addresses
     const firstHextet = parseInt(ip.split(':', 1)[0] || '0', 16);
-    if ((firstHextet & 0xffc0) === 0xfe80 || (firstHextet & 0xfe00) === 0xfc00) {
+    if (
+      (firstHextet & 0xffc0) === 0xfe80 ||
+      (firstHextet & 0xfe00) === 0xfc00
+    ) {
       return true;
     }
     // IPv4-mapped IPv6 addresses, e.g. ::ffff:127.0.0.1 or ::ffff:7f00:1
@@ -46,15 +52,64 @@ function isPrivateAddress(address, family) {
   );
 }
 
+function isBlockedHostname(hostname) {
+  const host = hostname.replace(/^\[|\]$/g, '').toLowerCase();
+  if (BLOCKED_HOSTNAMES.has(host)) {
+    return true;
+  }
+  const family = net.isIP(host);
+  return family !== 0 && isPrivateAddress(host, family);
+}
+
+// DNS lookup that rejects results pointing at internal hosts. Enforced at
+// connection time (also on every redirect hop), so a hostname cannot pass
+// validation and then re-resolve to an internal address (DNS rebinding).
+function guardedLookup(hostname, options, callback) {
+  dns.lookup(hostname, { ...options, all: true }, (err, addresses) => {
+    if (err) {
+      return callback(err);
+    }
+    const entries = Array.isArray(addresses)
+      ? addresses
+      : [{ address: addresses, family: net.isIP(addresses) }];
+    const internal = entries.find((entry) =>
+      isPrivateAddress(entry.address, entry.family),
+    );
+    if (internal) {
+      return callback(new Error(INTERNAL_HOST_MESSAGE));
+    }
+    if (options.all) {
+      return callback(null, entries);
+    }
+    return callback(null, entries[0].address, entries[0].family);
+  });
+}
+
+const baseConnector = buildConnector({ lookup: guardedLookup });
+
+// The lookup hook is skipped for IP literals, so check those here too.
+function guardedConnect(options, callback) {
+  if (isBlockedHostname(options.hostname || '')) {
+    return callback(new Error(INTERNAL_HOST_MESSAGE), null);
+  }
+  return baseConnector(options, callback);
+}
+
+// Dispatcher for fetch() that keeps the original hostname (TLS certificate
+// validation and the Host header stay correct) while blocking connections
+// to loopback, link-local, and private addresses.
+const publicHttpDispatcher = new Agent({ connect: guardedConnect });
+
 /**
  * Ensures that the URL is a http(s) address without embedded credentials
- * and does not point at an internal host (loopback, link-local, private).
+ * and does not point at an internal host by name or IP literal. Where the
+ * hostname actually connects to is enforced separately by
+ * `publicHttpDispatcher` at connection time.
  *
  * @param {string} url
- * @returns {Promise<string>} The validated URL with resolved IP address
  * @throws {Error} When the URL is invalid or points at an internal host.
  */
-async function assertPublicHttpUrl(url) {
+function assertPublicHttpUrl(url) {
   let parsed;
 
   try {
@@ -71,28 +126,13 @@ async function assertPublicHttpUrl(url) {
     throw new Error('URLs with embedded credentials are not allowed');
   }
 
-  const hostname = parsed.hostname.replace(/^\[|\]$/g, '').toLowerCase();
-
-  if (BLOCKED_HOSTNAMES.has(hostname)) {
-    throw new Error('Requests to internal hosts are not allowed');
+  if (isBlockedHostname(parsed.hostname)) {
+    throw new Error(INTERNAL_HOST_MESSAGE);
   }
-
-  const family = net.isIP(hostname);
-  const addresses = family
-    ? [{ address: hostname, family }]
-    : await dns.promises.lookup(hostname, { all: true });
-
-  for (const entry of addresses) {
-    if (isPrivateAddress(entry.address, entry.family)) {
-      throw new Error('Requests to internal hosts are not allowed');
-    }
-  }
-
-  // Return URL with resolved IP to prevent DNS rebinding
-  const resolvedAddress = addresses[0].address;
-  const resolvedUrl = new URL(url);
-  resolvedUrl.hostname = resolvedAddress;
-  return resolvedUrl.toString();
 }
 
-module.exports = { assertPublicHttpUrl };
+module.exports = {
+  assertPublicHttpUrl,
+  publicHttpDispatcher,
+  INTERNAL_HOST_MESSAGE,
+};
